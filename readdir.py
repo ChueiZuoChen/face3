@@ -1,14 +1,13 @@
 import sys, os, dlib, glob, numpy
 from skimage import io
 import cv2
-import imutils
 import os
 
 ladygaga_acc = 0
 unknow = 0
 she = 0
 
-def compareImg(imgp):
+def compareImg(imgp,numfiles):
     global ladygaga_acc,she,unknow
 
     # 臉部68特徵點檢測器
@@ -91,14 +90,14 @@ def compareImg(imgp):
 
     # 取得第一個名字,意味著比較模型之後最相似的那一張圖片的名字
         rec_name = cd_sorted[0][0]
-
+        print(rec_name)
         if (rec_name == "ladygaga"):
             ladygaga_acc = ladygaga_acc + 1
-            print(rec_name + ":" + str(ladygaga_acc) + "/59")
+            print(rec_name + ":" + str(ladygaga_acc) + "/"+ str(numfiles))
             print("Unknow: " + str(unknow))
         if (rec_name == "She"):
             she = she + 1
-            print(rec_name + ": " + str(she) + "/59")
+            print(rec_name + ": " + str(she) + "/" + str(numfiles))
             print("Unknow: "+str(unknow))
     except (RuntimeError,IndexError,TypeError,ValueError):
         unknow = unknow + 1
@@ -114,4 +113,4 @@ for img in files:
     s.append(img)
 
 for img in s:
-    compareImg(img_path + "/" + img)
+    compareImg(img_path + "/" + img,len(files))
