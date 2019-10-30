@@ -2,7 +2,7 @@ import dlib
 import cv2
 import imutils
 
-ip_camera_url = 'http://192.168.43.79:8080/video'
+ip_camera_url = 'http://192.168.43.51:8080/video'
 cap = cv2.VideoCapture(ip_camera_url)
 cap.set(cv2.CAP_PROP_BUFFERSIZE,1)
 detector = dlib.get_frontal_face_detector()
@@ -29,8 +29,8 @@ while (cap.isOpened()):
         shape = predictor(landmarks_frame, d)
         for i in range(68):
             cv2.circle(frame, (shape.part(i).x, shape.part(i).y), 3, (0, 0, 255), 2)
-            cv2.putText(frame, str(i), (shape.part(i).x, shape.part(i).y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 0, 0),
-                        1)
+            cv2.putText(frame, str(i), (shape.part(i).x, shape.part(i).y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 0, 0),1)
+
     cv2.imshow("Face Detection", frame)
 
     # print("================================")

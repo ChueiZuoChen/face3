@@ -1,7 +1,7 @@
 import dlib
 import cv2
 
-ip_camera_url = 'http://192.168.43.141:8080/video'
+ip_camera_url = 'http://192.168.15.2:8080/video'
 cap = cv2.VideoCapture(ip_camera_url)
 cap.set(cv2.CAP_PROP_BUFFERSIZE,1)
 detector = dlib.get_frontal_face_detector()
